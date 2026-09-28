@@ -27,7 +27,7 @@ function renderDetails(post) {
 	const programmes = Array.isArray(post.programmes) ? post.programmes.join(', ') : post.programmes;
 	const shareUrl = window.location.href;
 	const shareMessage = `Opportunity: ${post.title || ''}\nOrganization: ${post.organization || ''}\nDeadline: ${deadline.label}\nScholarBridge Hub: ${shareUrl}`;
-	root.innerHTML = `<div class="detail-back"><a class="text-link" href="opportunities.html">← All opportunities</a></div>
+	root.innerHTML = `<div class="detail-back"><a class="text-link" href="/pages/opportunities">← All opportunities</a></div>
 		<div class="detail-layout"><div class="detail-main"><img class="detail-image" src="${escapeHtml(image)}" alt="${escapeHtml(post.organization || 'Opportunity')}" onerror="this.onerror=null;this.src='../assets/images/placeholders/university-placeholder.jpg'">
 		<div class="detail-heading"><span class="detail-category">${escapeHtml(post.category || 'Opportunity')}</span><h1>${escapeHtml(post.title || 'Opportunity details')}</h1><p>${escapeHtml(post.organization || 'Organization not specified')}</p></div>
 		<section class="detail-section"><h2>About this opportunity</h2><p>${escapeHtml(post.description || 'No description has been provided yet.')}</p></section>
@@ -78,7 +78,7 @@ function setupHome(posts) {
 	const input = document.querySelector('#search-query');
 	form?.addEventListener('submit', (event) => {
 		event.preventDefault();
-		const url = new URL('pages/opportunities.html', window.location.href);
+		const url = new URL('/pages/opportunities', window.location.href);
 		if (input?.value.trim()) url.searchParams.set('q', input.value.trim());
 		window.location.href = url.href;
 	});

@@ -182,7 +182,7 @@ export async function initializePostForm(mode) {
         await addDoc(collection(db, 'posts'), { ...fields, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
         setMessage(form, 'Opportunity published successfully.', 'success');
       }
-      window.setTimeout(() => location.assign('dashboard.html'), 900);
+      window.setTimeout(() => location.assign('/admin/dashboard'), 900);
     } catch (error) {
       // If the image uploaded but the post save failed, that image is now orphaned in Cloudinary.
       // Unsigned uploads can't return a delete token, so remove it manually in the Cloudinary

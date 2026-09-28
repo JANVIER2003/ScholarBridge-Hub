@@ -10,21 +10,21 @@ export async function isAuthorizedAdmin(user) {
 
 export function requireAdmin() {
 	if (!isFirebaseConfigured || !auth || !db) {
-		location.replace('index.html?setup=required');
+		location.replace('/admin?setup=required');
 		return Promise.reject(new Error('Firebase is not configured.'));
 	}
 	return new Promise((resolve, reject) => {
 		const unsubscribe = onAuthStateChanged(auth, async (user) => {
 			unsubscribe();
 			if (!user) {
-				location.replace('index.html');
+				location.replace('/admin');
 				reject(new Error('Please sign in to continue.'));
 				return;
 			}
 			try {
 				if (!(await isAuthorizedAdmin(user))) {
 					await signOut(auth);
-					location.replace('index.html?access=denied');
+					location.replace('/admin?access=denied');
 					reject(new Error('This account is not authorized to manage content.'));
 					return;
 				}
@@ -39,7 +39,7 @@ export function requireAdmin() {
 export function setupSignOut() {
 	document.querySelector('[data-sign-out]')?.addEventListener('click', async () => {
 		await signOut(auth);
-		location.replace('index.html');
+		location.replace('/admin');
 	});
 }
 
@@ -63,7 +63,7 @@ if (loginForm) {
 				await signOut(auth);
 				throw new Error('This account is not on the administrator allowlist.');
 			}
-			location.replace('dashboard.html');
+			location.replace('/admin/dashboard');
 		} catch (error) {
 			message.textContent = error.message.includes('allowlist')
 				? error.message
@@ -78,7 +78,7 @@ if (loginForm) {
 	if (auth) onAuthStateChanged(auth, async (user) => {
 		if (!user) return;
 		try {
-			if (await isAuthorizedAdmin(user)) location.replace('dashboard.html');
+			if (await isAuthorizedAdmin(user)) location.replace('/admin/dashboard');
 		} catch {
 			message.textContent = 'Could not check administrator access. Try again.';
 		}

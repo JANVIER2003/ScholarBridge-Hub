@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="sbh-mark-title sbh-mark-desc">
+  <title id="sbh-mark-title">ScholarBridge Hub</title>
+  <desc id="sbh-mark-desc">SBH monogram beneath a bridge arch crowned with a graduation cap, with a glowing path crossing the bridge.</desc>
+  <defs>
+    <filter id="sbh-mark-glow" filterUnits="userSpaceOnUse" x="0" y="30" width="64" height="22">
+      <feGaussianBlur stdDeviation="1.3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <path fill="#244c3b" d="M32 2a30 30 0 0 1 30 30 30 30 0 0 1-30 30H10a8 8 0 0 1-8-8V32A30 30 0 0 1 32 2z"/>
+  <path d="M6 41h52" fill="none" stroke="#e3a942" stroke-width="1.6" stroke-linecap="round" opacity=".45"/>
+  <path d="M33 41h9.5" fill="none" stroke="#f4c86a" stroke-width="2.2" stroke-linecap="round" filter="url(#sbh-mark-glow)"/>
+  <path d="M9 41C15 16 49 16 55 41" fill="none" stroke="#d9ed7d" stroke-width="3.5" stroke-linecap="round"/>
+  <g>
+    <path fill="#c9df6a" d="M26.5 18.6v3.6c3.3 2.2 7.7 2.2 11 0v-3.6L32 21.3z"/>
+    <path fill="#d9ed7d" d="M32 11l10 5-10 5-10-5z"/>
+    <path d="M42 16v5.4" fill="none" stroke="#e3a942" stroke-width="1.2" stroke-linecap="round"/>
+    <circle cx="42" cy="22.4" r="1.4" fill="#e3a942"/>
+  </g>
+  <text x="32" y="56" fill="#ffffff" font-family="Manrope, 'Avenir Next', 'Segoe UI', Arial, sans-serif" font-size="13" font-weight="800" letter-spacing=".6" text-anchor="middle">SBH</text>
+</svg>

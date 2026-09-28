@@ -6,30 +6,41 @@
   <meta name="theme-color" content="#f5f7f3">
   <meta name="description" content="Find scholarships, university admissions, internships, jobs, fellowships and training opportunities with ScholarBridge Hub.">
   <title>ScholarBridge Hub | Global opportunities, within reach</title>
-  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ScholarBridge Hub">
+  <meta property="og:title" content="ScholarBridge Hub | Global opportunities, within reach">
+  <meta property="og:description" content="Find scholarships, university admissions, internships, jobs, fellowships and training opportunities with ScholarBridge Hub.">
+  <meta property="og:image" content="https://scholarbridge-hub1.web.app/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="ScholarBridge Hub logo: Bridging ambition to global opportunity.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://scholarbridge-hub1.web.app/assets/images/og-image.png">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/images/favicon.png" type="image/png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/logo.css">
+  <script src="js/logo.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="ScholarBridge Hub home">
-      <span class="brand-mark" aria-hidden="true">SB</span>
-      <span>ScholarBridge <strong>Hub</strong><small>Bridging Ambition to Global Opportunity</small></span>
-    </a>
+    <div class="sbh-logo-slot" data-sbh-logo="full" data-href="/"><a class="sbh-fallback" href="/"><img src="assets/images/logo-mark.svg" width="42" height="42" alt="">ScholarBridge Hub</a></div>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span><span></span></button>
     <nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation">
-      <a class="is-current" href="index.html">Home</a>
-      <a href="pages/scholarships.html">Scholarships</a>
-      <a href="pages/universities.html">Universities</a>
-      <a href="pages/opportunities.html">Opportunities</a>
-      <a href="pages/about.html">About</a>
-      <a href="pages/contact.html">Contact</a>
+      <a class="is-current" href="/">Home</a>
+      <a href="/pages/scholarships">Scholarships</a>
+      <a href="/pages/universities">Universities</a>
+      <a href="/pages/opportunities">Opportunities</a>
+      <a href="/pages/about">About</a>
+      <a href="/pages/contact">Contact</a>
     </nav>
-    <a class="header-action" href="pages/opportunities.html">Find your next step <span aria-hidden="true">↗</span></a>
+    <a class="header-action" href="/pages/opportunities">Find your next step <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="main-content">
@@ -40,7 +51,7 @@
         <p class="hero-lede">ScholarBridge Hub connects students and young people with scholarships, university admissions, internships, jobs and the opportunities in between.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#opportunities">Explore opportunities <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="pages/scholarships.html">Find scholarships</a>
+          <a class="button button-secondary" href="/pages/scholarships">Find scholarships</a>
         </div>
         <div class="hero-note"><span class="note-rule"></span><span>Good opportunities change what feels possible.</span></div>
       </div>
@@ -70,16 +81,16 @@
     <section class="category-section page-section" aria-labelledby="category-heading">
       <div class="section-heading">
         <div><span class="section-kicker">FIND YOUR DIRECTION</span><h2 id="category-heading">Explore by category</h2></div>
-        <a class="text-link" href="pages/opportunities.html">All opportunities <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="/pages/opportunities">All opportunities <span aria-hidden="true">↗</span></a>
       </div>
       <div class="category-grid">
-        <a class="category-tile category-scholarships" href="pages/scholarships.html"><span class="category-symbol">01</span><span class="category-emoji" aria-hidden="true">✳</span><strong>Scholarships</strong><span>Funding for your future <b>↗</b></span></a>
-        <a class="category-tile category-universities" href="pages/universities.html"><span class="category-symbol">02</span><span class="category-emoji" aria-hidden="true">⌂</span><strong>Universities</strong><span>Find your academic home <b>↗</b></span></a>
-        <a class="category-tile category-jobs" href="pages/opportunities.html?category=Jobs"><span class="category-symbol">03</span><span class="category-emoji" aria-hidden="true">↗</span><strong>Jobs</strong><span>Build your experience <b>↗</b></span></a>
-        <a class="category-tile category-internships" href="pages/opportunities.html?category=Internships"><span class="category-symbol">04</span><span class="category-emoji" aria-hidden="true">◎</span><strong>Internships</strong><span>Learn by doing <b>↗</b></span></a>
-        <a class="category-tile category-fellowships" href="pages/opportunities.html?category=Fellowships"><span class="category-symbol">05</span><span class="category-emoji" aria-hidden="true">✧</span><strong>Fellowships</strong><span>Grow with a community <b>↗</b></span></a>
-        <a class="category-tile category-training" href="pages/opportunities.html?category=Training"><span class="category-symbol">06</span><span class="category-emoji" aria-hidden="true">⌘</span><strong>Training</strong><span>Build skills that move you <b>↗</b></span></a>
-        <a class="category-tile category-other" href="pages/opportunities.html?category=Other%20Opportunities"><span class="category-symbol">07</span><span class="category-emoji" aria-hidden="true">✺</span><strong>Other opportunities</strong><span>More ways to take part <b>↗</b></span></a>
+        <a class="category-tile category-scholarships" href="/pages/scholarships"><span class="category-symbol">01</span><span class="category-emoji" aria-hidden="true">✳</span><strong>Scholarships</strong><span>Funding for your future <b>↗</b></span></a>
+        <a class="category-tile category-universities" href="/pages/universities"><span class="category-symbol">02</span><span class="category-emoji" aria-hidden="true">⌂</span><strong>Universities</strong><span>Find your academic home <b>↗</b></span></a>
+        <a class="category-tile category-jobs" href="/pages/opportunities?category=Jobs"><span class="category-symbol">03</span><span class="category-emoji" aria-hidden="true">↗</span><strong>Jobs</strong><span>Build your experience <b>↗</b></span></a>
+        <a class="category-tile category-internships" href="/pages/opportunities?category=Internships"><span class="category-symbol">04</span><span class="category-emoji" aria-hidden="true">◎</span><strong>Internships</strong><span>Learn by doing <b>↗</b></span></a>
+        <a class="category-tile category-fellowships" href="/pages/opportunities?category=Fellowships"><span class="category-symbol">05</span><span class="category-emoji" aria-hidden="true">✧</span><strong>Fellowships</strong><span>Grow with a community <b>↗</b></span></a>
+        <a class="category-tile category-training" href="/pages/opportunities?category=Training"><span class="category-symbol">06</span><span class="category-emoji" aria-hidden="true">⌘</span><strong>Training</strong><span>Build skills that move you <b>↗</b></span></a>
+        <a class="category-tile category-other" href="/pages/opportunities?category=Other%20Opportunities"><span class="category-symbol">07</span><span class="category-emoji" aria-hidden="true">✺</span><strong>Other opportunities</strong><span>More ways to take part <b>↗</b></span></a>
       </div>
     </section>
 
@@ -94,7 +105,7 @@
     <section class="latest-section page-section" id="opportunities" aria-labelledby="latest-heading">
       <div class="section-heading">
         <div><span class="section-kicker">FRESH POSSIBILITIES</span><h2 id="latest-heading">Latest opportunities</h2></div>
-        <a class="text-link" href="pages/opportunities.html">Browse all <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href="/pages/opportunities">Browse all <span aria-hidden="true">↗</span></a>
       </div>
       <div class="opportunity-grid" id="latest-list" aria-live="polite"><p class="loading-state">Loading opportunities...</p></div>
     </section>
@@ -103,15 +114,15 @@
       <div class="about-number">SBH<br><span>2026</span></div>
       <div><span class="section-kicker">A BRIDGE, NOT A GATEKEEPER</span><h2>Opportunity should be easier to find.</h2></div>
       <p>We bring education and career opportunities together so you can spend less time searching and more time planning your next step.</p>
-      <a class="button button-light" href="pages/about.html">Our story <span aria-hidden="true">↗</span></a>
+      <a class="button button-light" href="/pages/about">Our story <span aria-hidden="true">↗</span></a>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-main">
-      <div class="footer-brand"><a class="brand brand-light" href="index.html"><span class="brand-mark">SB</span><span>ScholarBridge <strong>Hub 🎓</strong><small>Bridging Ambition to Global Opportunity</small></span></a><p>Helping ambitious students find their next opportunity, wherever it leads.</p></div>
-      <div class="footer-column"><h2>Explore</h2><a href="pages/scholarships.html">Scholarships</a><a href="pages/universities.html">Universities</a><a href="pages/opportunities.html">Opportunities</a></div>
-      <div class="footer-column"><h2>ScholarBridge</h2><a href="pages/about.html">About</a><a href="pages/contact.html">Contact</a><a href="admin/index.html">Admin</a></div>
+      <div class="footer-brand"><div class="sbh-logo-slot" data-sbh-logo="full" data-href="/" data-tone="dark"><a class="sbh-fallback" href="/"><img src="assets/images/logo-mark.svg" width="42" height="42" alt="">ScholarBridge Hub</a></div><p>Helping ambitious students find their next opportunity, wherever it leads.</p></div>
+      <div class="footer-column"><h2>Explore</h2><a href="/pages/scholarships">Scholarships</a><a href="/pages/universities">Universities</a><a href="/pages/opportunities">Opportunities</a></div>
+      <div class="footer-column"><h2>ScholarBridge</h2><a href="/pages/about">About</a><a href="/pages/contact">Contact</a><a href="/admin">Admin</a></div>
       <div class="footer-column footer-contact"><h2>Get in touch</h2><a href="mailto:nybzjnvr@gmail.com">nybzjnvr@gmail.com</a><a href="https://wa.me/250784315928">+250 784 315 928</a></div>
     </div>
     <div class="footer-note">Please verify opportunity details with the official organization or application source before applying.</div>

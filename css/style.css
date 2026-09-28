@@ -31,12 +31,6 @@ img { display: block; max-width: 100%; }
 .skip-link:focus { transform: translateY(0); }
 
 .site-header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; min-height: 88px; padding: 0 max(5.8vw, calc((100vw - 1440px) / 2)); background: var(--paper); border-bottom: 1px solid rgba(36, 76, 59, .09); }
-.brand { display: inline-flex; align-items: center; gap: 11px; flex: 0 0 auto; font-family: var(--display); font-size: 15px; font-weight: 700; line-height: 1.15; }
-.brand > span:last-child { display: grid; gap: 4px; }
-.brand strong { color: var(--forest); }
-.brand small { color: var(--muted); font-family: var(--body); font-size: 10px; font-weight: 500; }
-.brand > span:last-child::after { color: var(--muted); content: '+250 784 315 928'; font-family: var(--body); font-size: 9px; font-weight: 600; }
-.brand-mark { display: grid; width: 42px; height: 42px; place-items: center; color: var(--lime); background: var(--forest); border-radius: 50% 50% 50% 8px; font: 800 14px var(--display); letter-spacing: 0; }
 .primary-navigation { display: flex; align-items: center; gap: clamp(18px, 2.2vw, 34px); margin-left: auto; margin-right: 32px; }
 .primary-navigation a { position: relative; padding: 9px 0; color: #59645c; font-size: 13px; font-weight: 600; transition: color .2s ease; }
 .primary-navigation a:hover, .primary-navigation a.is-current { color: var(--forest); }
@@ -167,10 +161,6 @@ img { display: block; max-width: 100%; }
 
 .site-footer { padding: 50px max(5.8vw, calc((100vw - 1440px) / 2)) 0; color: white; background: #172820; }
 .footer-main { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1.2fr; gap: 42px; padding-bottom: 35px; }
-.brand-light strong, .brand-light small { color: white; }
-.brand-light small { opacity: .66; }
-.brand-light > span:last-child::after { color: rgba(255,255,255,.72); }
-.brand-light .brand-mark { color: var(--forest); background: var(--lime); }
 .footer-brand > p { max-width: 260px; margin: 18px 0 0; color: #b5c2b8; font-size: 11px; line-height: 1.7; }
 .footer-column { display: flex; flex-direction: column; align-items: start; gap: 9px; }
 .footer-column h2 { margin: 2px 0 7px; color: var(--lime); font: 700 12px var(--display); }

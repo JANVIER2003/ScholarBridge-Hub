@@ -1,0 +1,121 @@
+/* ScholarBridge Hub logo (rendered by js/logo.js). */
+.sbh-logo,
+.sbh-logo-slot {
+	--sbh-tile: #244c3b;
+	--sbh-arch: #d9ed7d;
+	--sbh-cap-body: #c9df6a;
+	--sbh-path: #e3a942;
+	--sbh-spark: #f4c86a;
+	--sbh-letters: #ffffff;
+	--sbh-name: #1c2821;
+	--sbh-name-accent: #244c3b;
+	--sbh-sub: #68736b;
+	--sbh-phone: #244c3b;
+	--sbh-focus: #e76f51;
+	--sbh-mark-size: 44px;
+	position: relative;
+	display: inline-flex;
+	flex: 0 1 auto;
+	align-items: center;
+	gap: 11px;
+	min-width: 0;
+	min-height: var(--sbh-mark-size);
+	font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
+	line-height: 1.15;
+}
+
+.sbh-logo--on-dark,
+.sbh-logo-slot[data-tone="dark"] {
+	--sbh-tile: #d9ed7d;
+	--sbh-arch: #244c3b;
+	--sbh-cap-body: #3b6b52;
+	--sbh-path: #b86e14;
+	--sbh-spark: #e76f51;
+	--sbh-letters: #173428;
+	--sbh-name: #ffffff;
+	--sbh-name-accent: #d9ed7d;
+	--sbh-sub: rgba(255, 255, 255, .7);
+	--sbh-phone: #dce9dd;
+}
+
+/* No-JS fallback markup inside the slot. */
+.sbh-fallback { display: inline-flex; align-items: center; gap: 11px; color: var(--sbh-name); font-size: 15px; font-weight: 700; }
+.sbh-fallback img { width: var(--sbh-mark-size); height: var(--sbh-mark-size); }
+
+/* Mark */
+.sbh-logo__mark { display: block; flex: 0 0 auto; width: var(--sbh-mark-size); height: var(--sbh-mark-size); padding: 0; background: none; border: 0; border-radius: 50% 50% 50% 8px; cursor: pointer; }
+.sbh-mark { display: block; width: 100%; height: 100%; overflow: visible; }
+.sbh-mark__tile { fill: var(--sbh-tile); }
+.sbh-mark__deck { fill: none; stroke: var(--sbh-path); stroke-width: 1.6; stroke-linecap: round; opacity: .45; }
+.sbh-mark__spark { fill: none; stroke: var(--sbh-spark); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 18 200; stroke-dashoffset: -52; }
+.sbh-mark__arch { fill: none; stroke: var(--sbh-arch); stroke-width: 3.5; stroke-linecap: round; }
+.sbh-mark__cap { transform-box: fill-box; transform-origin: 50% 100%; }
+.sbh-mark__cap-body { fill: var(--sbh-cap-body); }
+.sbh-mark__cap-board { fill: var(--sbh-arch); }
+.sbh-mark__tassel { fill: none; stroke: var(--sbh-path); stroke-width: 1.2; stroke-linecap: round; }
+.sbh-mark__tassel-end { fill: var(--sbh-path); }
+.sbh-mark__letters { fill: var(--sbh-letters); font: 800 13px 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif; letter-spacing: .6px; }
+
+/* Wordmark */
+.sbh-logo__text { display: grid; gap: 3px; min-width: 0; justify-items: start; }
+.sbh-logo__home { display: grid; gap: 4px; min-width: 0; color: var(--sbh-name); text-decoration: none; }
+.sbh-logo__name { font-size: 15px; font-weight: 700; white-space: nowrap; }
+.sbh-logo__name strong { color: var(--sbh-name-accent); font-weight: 800; }
+.sbh-logo__sub { overflow: hidden; color: var(--sbh-sub); font-family: 'DM Sans', 'Segoe UI', sans-serif; font-size: 10px; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.sbh-logo__phone { padding: 0; color: var(--sbh-phone); background: none; border: 0; font: 700 11px/1.2 'DM Sans', 'Segoe UI', sans-serif; letter-spacing: .02em; text-decoration: underline dotted; text-underline-offset: 3px; cursor: pointer; }
+.sbh-logo__phone:hover { text-decoration-style: solid; }
+
+.sbh-logo__mark:focus-visible,
+.sbh-logo__home:focus-visible,
+.sbh-logo__phone:focus-visible,
+.sbh-logo__action:focus-visible { outline: 2px solid var(--sbh-focus); outline-offset: 3px; }
+
+/* Contact popup */
+.sbh-logo__popup { position: absolute; z-index: 40; top: calc(100% + 10px); left: 0; display: grid; gap: 8px; width: max-content; min-width: 220px; max-width: calc(100vw - 32px); padding: 14px; color: #1c2821; background: #ffffff; border: 1px solid #dce2da; box-shadow: 0 14px 38px rgba(28, 40, 33, .16); font-family: 'DM Sans', 'Segoe UI', sans-serif; }
+.sbh-logo__popup[hidden] { display: none; }
+.sbh-logo__popup-title { margin: 0 0 2px; color: #68736b; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.sbh-logo__action { display: block; padding: 10px 12px; font-size: 13px; font-weight: 700; text-align: center; text-decoration: none; }
+.sbh-logo__action--call { color: #ffffff; background: #244c3b; }
+.sbh-logo__action--call:hover { background: #173428; }
+.sbh-logo__action--whatsapp { color: #173428; background: #d9ed7d; }
+.sbh-logo__action--whatsapp:hover { background: #cde26a; }
+
+/* Variants */
+.sbh-logo--compact { --sbh-mark-size: 40px; gap: 10px; }
+.sbh-logo--compact .sbh-logo__name { font-size: 14px; }
+
+@media (max-width: 760px) {
+	.sbh-logo, .sbh-logo-slot { --sbh-mark-size: 38px; gap: 8px; }
+	.sbh-logo__name { font-size: 13px; }
+	.sbh-logo__sub { max-width: 170px; font-size: 9px; }
+	.sbh-logo__phone { font-size: 10.5px; }
+}
+
+@media (max-width: 380px) {
+	.sbh-logo__sub { max-width: 145px; }
+}
+
+/* Motion: draw-in on load, travelling path and cap bounce on hover, focus or open. */
+@media (prefers-reduced-motion: no-preference) {
+	.sbh-logo--intro .sbh-mark__arch { stroke-dasharray: 100; animation: sbh-draw .9s cubic-bezier(.6, 0, .3, 1) both; }
+	.sbh-logo--intro .sbh-mark__deck { stroke-dasharray: 100; animation: sbh-draw .6s .35s ease-out both; }
+	.sbh-logo--intro .sbh-mark__spark { animation: sbh-travel 1s .9s ease-in-out both; }
+	.sbh-logo--intro .sbh-mark__letters,
+	.sbh-logo--intro .sbh-logo__text { animation: sbh-fade-in .5s .75s ease-out both; }
+	.sbh-logo--intro .sbh-mark__cap { animation: sbh-cap-drop .5s .9s cubic-bezier(.3, 1.5, .6, 1) both; }
+
+	.sbh-logo:not(.sbh-logo--intro):hover .sbh-mark__spark,
+	.sbh-logo:not(.sbh-logo--intro):focus-within .sbh-mark__spark,
+	.sbh-logo.is-open .sbh-mark__spark { animation: sbh-travel 1.1s ease-in-out; }
+	.sbh-logo:not(.sbh-logo--intro):hover .sbh-mark__cap,
+	.sbh-logo:not(.sbh-logo--intro):focus-within .sbh-mark__cap,
+	.sbh-logo.is-open .sbh-mark__cap { animation: sbh-bounce .7s ease-out; }
+	.sbh-logo__popup:not([hidden]) { animation: sbh-pop-in .18s ease-out; }
+}
+
+@keyframes sbh-draw { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes sbh-fade-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes sbh-cap-drop { from { opacity: 0; transform: translateY(-7px); } to { opacity: 1; transform: none; } }
+@keyframes sbh-travel { 0% { stroke-dashoffset: 18; } 80% { stroke-dashoffset: -100; } 80.01% { stroke-dashoffset: 18; } 100% { stroke-dashoffset: -52; } }
+@keyframes sbh-bounce { 0%, 100% { transform: none; } 30% { transform: translateY(-4px) rotate(-6deg); } 55% { transform: translateY(0); } 75% { transform: translateY(-1.5px) rotate(3deg); } }
+@keyframes sbh-pop-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }

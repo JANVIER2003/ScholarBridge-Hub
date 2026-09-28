@@ -22,16 +22,10 @@ a { color: inherit; text-decoration: none; }
 button, input, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 .section-kicker { color: var(--admin-green); font-size: 10px; font-weight: 800; }
-.brand-mark { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; color: var(--admin-lime); background: var(--admin-green); border-radius: 50% 50% 50% 8px; font: 800 14px 'Manrope', sans-serif; }
-.admin-brand { display: inline-flex; align-items: center; gap: 11px; font: 700 15px/1.15 'Manrope', sans-serif; }
-.admin-brand > span:last-child { display: grid; gap: 4px; }
-.admin-brand strong { color: var(--admin-green); }
-.admin-brand small { color: var(--admin-muted); font: 700 9px 'DM Sans', sans-serif; letter-spacing: 0; }
-.admin-brand > span:last-child::after { color: var(--admin-muted); content: '+250 784 315 928'; font: 600 8px 'DM Sans', sans-serif; }
 
 .admin-login-page { min-height: 100vh; background: linear-gradient(125deg, #e7eee5 0 50%, var(--admin-paper) 50%); }
 .login-layout { display: flex; min-height: 100vh; flex-direction: column; align-items: center; justify-content: center; padding: 34px 20px; }
-.login-layout > .admin-brand { margin-bottom: 26px; }
+.login-layout > .sbh-logo-slot { margin-bottom: 26px; }
 .login-panel { width: min(100%, 440px); padding: 38px; background: var(--admin-white); border: 1px solid var(--admin-line); box-shadow: 0 14px 45px rgba(28,40,33,.08); }
 .login-panel h1 { margin: 9px 0 3px; font: 800 34px/1.2 'Manrope', sans-serif; }
 .login-panel > p { color: var(--admin-muted); font-size: 12px; }
@@ -113,8 +107,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width: 700px) {
 	.admin-header { min-height: 68px; padding: 0 16px; }
-	.admin-brand { gap: 8px; font-size: 12px; }
-	.brand-mark { width: 36px; height: 36px; font-size: 12px; }
 	.admin-header-actions { gap: 10px; }
 	.admin-view-site { display: none; }
 	.admin-header-actions .admin-button { min-height: 35px; padding: 0 9px; font-size: 9px; }
