@@ -68,7 +68,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .posts-table td { padding: 12px; border-bottom: 1px solid #ebefea; color: #445048; font-size: 10px; }
 .posts-table tr:last-child td { border-bottom: 0; }
 .table-opportunity { display: flex; min-width: 185px; align-items: center; gap: 10px; }
-.table-opportunity img { width: 46px; height: 36px; flex: 0 0 auto; object-fit: cover; background: var(--admin-mint); }
+.table-opportunity img { width: 46px; height: 36px; flex: 0 0 auto; object-fit: contain; object-position: center; background: #fff; }
 .table-opportunity > div { display: grid; gap: 5px; }
 .table-opportunity strong { max-width: 240px; color: var(--admin-ink); font-size: 10px; }
 .admin-pin-badge { justify-self: start; padding: 3px 6px; color: white; background: var(--admin-green); font-size: 8px; font-weight: 800; }
@@ -96,7 +96,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .field-hint { color: var(--admin-muted); font-size: 9px; font-weight: 500; }
 .upload-field { display: grid; max-width: 500px; gap: 9px; color: #465249; font-size: 10px; font-weight: 800; }
 .upload-field input { width: 100%; padding: 10px; background: #f7f9f6; border: 1px dashed #aebbb1; font-size: 10px; }
-.image-preview { width: min(100%, 420px); max-height: 230px; margin-top: 15px; object-fit: cover; background: #edf2ed; }
+.image-preview { width: min(100%, 420px); max-height: 230px; margin-top: 15px; object-fit: contain; object-position: center; background: #fff; }
 .checkbox-field { display: flex; align-items: center; gap: 9px; margin: 0 0 15px; color: #465249; font-size: 11px; font-weight: 700; }
 .checkbox-field input { width: 16px; height: 16px; accent-color: var(--admin-green); }
 .deadline-fields input:disabled { color: #9aa39c; background: #f0f3ef; }
