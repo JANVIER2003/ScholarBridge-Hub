@@ -1,6 +1,5 @@
 import { collection, deleteDoc, doc, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
-import { deleteObject, ref } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js';
-import { db, storage } from '../../js/firebase-config.js';
+import { db } from '../../js/firebase-config.js';
 import { escapeHtml, formatDate, getDeadlineInfo, safeUrl, statusMarkup } from '../../js/utils.js';
 import { requireAdmin, setupSignOut } from './auth.js';
 
@@ -36,10 +35,9 @@ async function deletePost(postId) {
 	const post = posts.find((item) => item.id === postId);
 	if (!post || !window.confirm('Are you sure you want to delete this opportunity?')) return;
 	try {
+		// The post's Cloudinary image (public_id in post.imagePath) is left in place: deleting it
+		// requires the Cloudinary API secret, which must never ship in frontend code.
 		await deleteDoc(doc(db, 'posts', postId));
-		if (post.imagePath && storage) {
-			try { await deleteObject(ref(storage, post.imagePath)); } catch (error) { console.warn('The opportunity was deleted, but its stored image could not be removed.', error); }
-		}
 		posts = posts.filter((item) => item.id !== postId);
 		renderStatistics();
 		renderTable(document.querySelector('#table-filter').value);

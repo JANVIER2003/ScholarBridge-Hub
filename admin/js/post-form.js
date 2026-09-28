@@ -1,10 +1,12 @@
 import { addDoc, collection, doc, getDoc, serverTimestamp, updateDoc } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
-import { deleteObject, getDownloadURL, ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js';
-import { db, storage } from '../../js/firebase-config.js';
+import { db } from '../../js/firebase-config.js';
 import { requireAdmin, setupSignOut } from './auth.js';
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+const CLOUDINARY_CLOUD_NAME = 'dnvwfd3h';
+const CLOUDINARY_UPLOAD_PRESET = 'scholarbridge_uploads';
+const CLOUDINARY_API = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}`;
 
 function setMessage(form, text, state = '') {
   const message = form.querySelector('.form-message');
@@ -67,13 +69,23 @@ function getFormData(form) {
   };
 }
 
+// Unsigned upload, so no API secret is needed in the browser. imagePath stores the Cloudinary public_id.
 async function uploadImage(file) {
   if (!file) return null;
-  const extension = file.name.split('.').pop()?.toLowerCase() || 'img';
-  const imagePath = `post-images/${crypto.randomUUID()}.${extension}`;
-  const imageReference = ref(storage, imagePath);
-  await uploadBytes(imageReference, file, { contentType: file.type });
-  return { imagePath, imageUrl: await getDownloadURL(imageReference) };
+  const body = new FormData();
+  body.append('file', file);
+  body.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+  let response;
+  try {
+    response = await fetch(`${CLOUDINARY_API}/image/upload`, { method: 'POST', body });
+  } catch {
+    throw new Error('Image upload failed. Check your internet connection and try again.');
+  }
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || !result.secure_url) {
+    throw new Error(`Image upload failed: ${result.error?.message || `Cloudinary returned status ${response.status}.`}`);
+  }
+  return { imagePath: result.public_id || '', imageUrl: result.secure_url };
 }
 
 function fillForm(form, post) {
@@ -98,7 +110,6 @@ export async function initializePostForm(mode) {
   try {
     await requireAdmin();
     setupSignOut();
-    if (!storage) throw new Error('Firebase Storage is not configured.');
     if (isEdit) {
       const postId = new URLSearchParams(location.search).get('id');
       if (!postId) throw new Error('No opportunity was selected for editing.');
@@ -141,14 +152,22 @@ export async function initializePostForm(mode) {
       setMessage(form, imageError, 'error');
       return;
     }
+    const submitLabel = submitButton.textContent;
     submitButton.disabled = true;
-    setMessage(form, selectedImage ? 'Uploading image and saving opportunity...' : 'Saving opportunity...');
     let newlyUploadedImage = null;
     try {
       const fields = getFormData(form);
-      if (selectedImage) newlyUploadedImage = await uploadImage(selectedImage);
-      if (newlyUploadedImage) Object.assign(fields, newlyUploadedImage);
-      else if (existingPost) {
+      if (selectedImage) {
+        submitButton.textContent = 'Uploading...';
+        setMessage(form, 'Uploading image...');
+        newlyUploadedImage = await uploadImage(selectedImage);
+      }
+      submitButton.textContent = 'Saving...';
+      setMessage(form, 'Saving opportunity...');
+      if (newlyUploadedImage) {
+        fields.imageUrl = newlyUploadedImage.imageUrl;
+        fields.imagePath = newlyUploadedImage.imagePath;
+      } else if (existingPost) {
         fields.imageUrl = existingPost.imageUrl || '';
         fields.imagePath = existingPost.imagePath || '';
       } else {
@@ -156,10 +175,8 @@ export async function initializePostForm(mode) {
         fields.imagePath = '';
       }
       if (isEdit) {
+        // A replaced image is left in Cloudinary: deleting it from the browser would need the API secret.
         await updateDoc(doc(db, 'posts', existingPost.id), { ...fields, updatedAt: serverTimestamp() });
-        if (newlyUploadedImage && existingPost.imagePath) {
-          try { await deleteObject(ref(storage, existingPost.imagePath)); } catch (error) { console.warn('Updated opportunity, but the previous image could not be removed.', error); }
-        }
         setMessage(form, 'Opportunity updated. The public listing now reflects your changes.', 'success');
       } else {
         await addDoc(collection(db, 'posts'), { ...fields, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
@@ -167,10 +184,11 @@ export async function initializePostForm(mode) {
       }
       window.setTimeout(() => location.assign('dashboard.html'), 900);
     } catch (error) {
-      if (newlyUploadedImage) {
-        try { await deleteObject(ref(storage, newlyUploadedImage.imagePath)); } catch { /* Keep the original save error visible. */ }
-      }
+      // If the image uploaded but the post save failed, that image is now orphaned in Cloudinary.
+      // Unsigned uploads can't return a delete token, so remove it manually in the Cloudinary
+      // Media Library, or add a signed backend call for cleanup in the future.
       setMessage(form, error.message || 'Could not save this opportunity. Check your connection and permissions.', 'error');
+      submitButton.textContent = submitLabel;
       submitButton.disabled = false;
     }
   });
