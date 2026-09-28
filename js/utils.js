@@ -1,7 +1,13 @@
 export const CONTACT_EMAIL = 'nybzjnvr@gmail.com';
 export const CONTACT_PHONE = '+250 784 315 928';
 export const WHATSAPP_NUMBER = '250784315928';
+export const PINNABLE_CATEGORY = 'Other Opportunities';
+export const MAX_PINNED_POSTS = 3;
 export const FALLBACK_IMAGE = `${location.pathname.includes('/pages/') ? '../' : ''}assets/images/placeholders/university-placeholder.jpg`;
+
+export function isPinnablePost(post) {
+	return post.category === PINNABLE_CATEGORY;
+}
 
 export function escapeHtml(value = '') {
 	return String(value).replace(/[&<>"']/g, (character) => ({

@@ -57,6 +57,7 @@
 	.category-tile > span:last-child { font-size: 9px; }
 	.category-other { grid-column: span 2; }
 	.closing-section { padding-top: 45px; padding-bottom: 48px; }
+	.featured-section { padding-top: 45px; padding-bottom: 48px; }
 	.opportunity-grid, .closing-section .opportunity-grid { grid-template-columns: 1fr; gap: 13px; }
 	.card-image { height: 190px; }
 	.card-content { padding: 16px; }

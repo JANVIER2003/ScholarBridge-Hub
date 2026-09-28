@@ -1,6 +1,6 @@
 import { getPosts, getActivePosts, getClosingSoonPosts, renderPosts } from './posts.js';
 import { filterPosts } from './search.js';
-import { escapeHtml, FALLBACK_IMAGE, formatDate, getDeadlineInfo, safeUrl, statusMarkup, CONTACT_EMAIL, CONTACT_PHONE, WHATSAPP_NUMBER } from './utils.js';
+import { escapeHtml, FALLBACK_IMAGE, formatDate, getDeadlineInfo, isPinnablePost, MAX_PINNED_POSTS, safeUrl, statusMarkup, CONTACT_EMAIL, CONTACT_PHONE, WHATSAPP_NUMBER } from './utils.js';
 
 const menuToggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.primary-navigation');
@@ -68,12 +68,18 @@ function setupListing(posts) {
 }
 
 function setupHome(posts) {
+	const featuredSection = document.querySelector('#featured-opportunities');
+	const featuredList = document.querySelector('#featured-list');
 	const latestList = document.querySelector('#latest-list');
 	const closingList = document.querySelector('#closing-list');
-	if (!latestList && !closingList) return;
-	const active = getActivePosts(posts);
+	if (!featuredList && !latestList && !closingList) return;
+	const featured = posts.filter((post) => post.pinned === true && isPinnablePost(post)).slice(0, MAX_PINNED_POSTS);
+	if (featuredSection) featuredSection.hidden = featured.length === 0;
+	renderPosts(featuredList, featured, '', { showPinBadge: true });
+	const unpinned = posts.filter((post) => post.pinned !== true);
+	const active = getActivePosts(unpinned);
 	renderPosts(latestList, active.slice(0, 6));
-	renderPosts(closingList, getClosingSoonPosts(posts).slice(0, 3), 'Nothing is closing in the next seven days. Explore all active opportunities.');
+	renderPosts(closingList, getClosingSoonPosts(unpinned).slice(0, 3), 'Nothing is closing in the next seven days. Explore all active opportunities.');
 	const form = document.querySelector('#opportunity-search');
 	const input = document.querySelector('#search-query');
 	form?.addEventListener('submit', (event) => {
@@ -96,5 +102,7 @@ try {
 		else renderDetails(post);
 	}
 } catch (error) {
-	document.querySelectorAll('#latest-list, #closing-list, [data-post-list], [data-post-detail]').forEach((container) => showLoadError(container, error));
+	const featuredSection = document.querySelector('#featured-opportunities');
+	if (featuredSection) featuredSection.hidden = false;
+	document.querySelectorAll('#featured-list, #latest-list, #closing-list, [data-post-list], [data-post-detail]').forEach((container) => showLoadError(container, error));
 }

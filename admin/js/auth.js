@@ -1,4 +1,4 @@
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+import { browserSessionPersistence, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
 import { doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
 import { auth, db, isFirebaseConfigured } from '../../js/firebase-config.js';
 
@@ -22,6 +22,7 @@ export function requireAdmin() {
 				return;
 			}
 			try {
+				await setPersistence(auth, browserSessionPersistence);
 				if (!(await isAuthorizedAdmin(user))) {
 					await signOut(auth);
 					location.replace('/admin?access=denied');
@@ -58,6 +59,7 @@ if (loginForm) {
 		const button = loginForm.querySelector('button');
 		button.disabled = true;
 		try {
+			await setPersistence(auth, browserSessionPersistence);
 			const credentials = await signInWithEmailAndPassword(auth, loginForm.elements.email.value.trim(), loginForm.elements.password.value);
 			if (!(await isAuthorizedAdmin(credentials.user))) {
 				await signOut(auth);

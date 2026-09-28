@@ -1,5 +1,6 @@
-import { addDoc, collection, doc, getDoc, serverTimestamp, updateDoc } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
+import { addDoc, collection, doc, getDoc, getDocs, serverTimestamp, updateDoc } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
 import { db } from '../../js/firebase-config.js';
+import { isPinnablePost, MAX_PINNED_POSTS, PINNABLE_CATEGORY } from '../../js/utils.js';
 import { requireAdmin, setupSignOut } from './auth.js';
 
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
@@ -63,6 +64,7 @@ function getFormData(form) {
     deadlineTime: noFixedDeadline ? '' : String(values.get('deadlineTime') || ''),
     timezone,
     noFixedDeadline,
+    pinned: form.elements.pinned.checked,
     applicationLink,
     contact: String(values.get('contact') || '').trim(),
     deleted: false
@@ -94,6 +96,7 @@ function fillForm(form, post) {
   }
   form.elements.programmes.value = Array.isArray(post.programmes) ? post.programmes.join(', ') : post.programmes || '';
   form.elements.noFixedDeadline.checked = post.noFixedDeadline === true;
+  form.elements.pinned.checked = post.pinned === true;
   toggleDeadlineFields(form);
   const preview = form.querySelector('#image-preview');
   if (post.imageUrl) {
@@ -157,6 +160,19 @@ export async function initializePostForm(mode) {
     let newlyUploadedImage = null;
     try {
       const fields = getFormData(form);
+      if (fields.pinned && !isPinnablePost(fields)) {
+        throw new Error(`Only posts in the ${PINNABLE_CATEGORY} category can be pinned.`);
+      }
+      if (fields.pinned) {
+        const snapshot = await getDocs(collection(db, 'posts'));
+        const pinnedCount = snapshot.docs.filter((item) => {
+          const post = item.data();
+          return item.id !== existingPost?.id && post.deleted !== true && post.pinned === true;
+        }).length;
+        if (pinnedCount >= MAX_PINNED_POSTS) {
+          throw new Error('You can pin a maximum of 3 opportunities. Unpin one first.');
+        }
+      }
       if (selectedImage) {
         submitButton.textContent = 'Uploading...';
         setMessage(form, 'Uploading image...');
